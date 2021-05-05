@@ -1,0 +1,72 @@
+<style>
+    .row {
+        padding-bottom: 12px;
+    }
+    pre {
+        white-space: pre-wrap;
+    }
+    #transact {
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<hr>
+<div id="transact" class="row">
+  <div class="col-md-3">
+    <img src="piggy-bank.jpeg" alt="piggy bank" width="80%">
+  </div>
+  <div class="col-md-6" >
+    <h4 style="margin-bottom:12px;">Create a new Transaction</h4>
+    <form action="/transaction/new" method="POST">
+      <div class="row">
+        <label for="senderInput" class="col-md-2 col-form-label">Sender</label>
+        <div class="col-md-10">
+          <input type="text" name="sender" id="senderInput" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-md-2 col-form-label" for="recipientInput">Recipient</label>
+        <div class="col-md-10">
+          <input type="text" name="recipient" class="form-control" id="recipientInput">
+        </div>
+      </div>
+      <div class="row"><label for="amountInput" class="col-md-2 col-form-label">Amount</label>
+        <div class="col-md-10">
+          <input type="text" name="amount" class="form-control" id="amountInput">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"><input type="submit" class="btn btn-primary"></div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row">
+  <div class="col">
+    <h5>Current Transactions (to be mined)</h5>
+    <pre>
+      <%= @transactions %>
+    </pre>
+    <% if @transactions.any? %>
+      <form action="/mine" method="POST">
+        <input type="submit"
+               class="btn btn-warning"
+               value="mine dat shiz!">
+      </form>
+    <% end %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col">
+    <h5>Current Blockchain -- <%= @chain.length + 1 %> links</h5>
+    <pre>
+      <%= @chain %>
+    </pre>
+  </div>
+</div>
